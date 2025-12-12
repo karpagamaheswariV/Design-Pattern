@@ -6,13 +6,14 @@ public class Main
 
         TextRender boldText = new BoldDecorator(text);
         TextRender italicText = new ItalicDecorator(text);
-
+        TextRender underlineText = new UnderlineDecorator(text);
         // Applying both (nested)
-        TextRender boldItalic = new BoldDecorator(new ItalicDecorator(text));
+        TextRender biu = new BoldDecorator(new ItalicDecorator(new UnderlineDecorator(text)));
 
         System.out.println("Bold: " + boldText.render());
         System.out.println("Italic: " + italicText.render());
-        System.out.println("Bold + Italic: " + boldItalic.render());
+        System.out.println("UnderLine: " + underlineText.render());
+         System.out.println(" \n" + biu.render());
     }
 }
 
@@ -61,3 +62,14 @@ class ItalicDecorator extends TextDecoder {
         return "<i>" + textrender.render() + "</i>";
     }
 }
+class UnderlineDecorator extends TextDecoder {
+
+    UnderlineDecorator(TextRender textrender) {
+        super(textrender);
+    }
+
+    public String render() {
+        return "<u>" + textrender.render() + "</u>";
+    }
+}
+
